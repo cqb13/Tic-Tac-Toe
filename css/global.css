@@ -1,0 +1,20 @@
+:root {
+  --color-primary: #444;
+}
+
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: var(--color-primary);
+}
+
+header {
+  margin: 0 auto;
+}
+
+header h1 {
+  font-size: 3em;
+}
