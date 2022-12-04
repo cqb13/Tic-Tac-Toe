@@ -1,35 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/global.css">
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/footer.css">
-    <title>Game</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://cqb13.me/Tic-Tac-Toe/" />
+    <meta property="og:title" content="Tic Tac Toe" />
+    <meta property="og:description" content="Tic Tac Toe game!" />
+    <meta property="og:image" content="https://cqb13.me/Tic-Tac-Toe/Logo.png" />
+    <link rel="icon" href="Logo.png" />
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/popup.css" />
+    <title>Tic Tac Toe</title>
+  </head>
+  <body>
     <header>
-        <h1>Game</h1>
+      <a href="https://cqb13.me" target="_blank">
+        <img src="pfp.png" width="50px" height="50px" alt="logo" class="logo" />
+      </a>
+      <h1>Tic Tac Toe</h1>
     </header>
     <main>
-        <div class="game-area">
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
+      <div class="game-area">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+      <div id="modal">
+        <div class="modal-content">
+          <h2>Game Over</h2>
+          <input type="button" id="close" value="&times" />
+          <p id="winner"></p>
+          <input type="button" id="again" value="Play Again" />
         </div>
-        <div class="game-btns">
-            <input type="button" id="clear" value="Clear">
-            <input type="checkbox" id="computer" checked>
-        </div>
+      </div>
+      <div class="game-btns">
+        <input type="button" id="clear" value="Clear" />
+        <label>
+          <input type="checkbox" id="computer" />
+          <span>Play with computer</span>
+        </label>
+      </div>
     </main>
     <script src="./js/main.js"></script>
-</body>
+  </body>
 </html>

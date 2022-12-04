@@ -1,20 +1,133 @@
 :root {
   --color-primary: #444;
+  --font-color: #f5f7fa;
+  --accent-color: #4d545c;
 }
 
 html,
 body {
   display: flex;
   flex-direction: column;
-  height: 100%;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  color: var(--color-primary);
+  background-color: var(--color-primary);
+  color: var(--font-color);
+  height: 100%;
 }
 
 header {
   margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+.logo {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+img:hover {
+  transition: 500ms;
+  scale: 1.1;
 }
 
 header h1 {
   font-size: 3em;
+}
+
+input[type="button"] {
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 2em;
+  background-color: var(--accent-color);
+  color: var(--font-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 500ms;
+  width: 30%;
+}
+
+input[type="button"]:hover {
+  background-color: #b2bccc;
+}
+
+input[type="button"]:active {
+  scale: 1.1;
+}
+
+label {
+  font-size: 1.5em;
+  width: 30%;
+  text-align: center;
+}
+
+/*style a checkbox with a span label*/
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"] + span:before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--accent-color);
+  border-radius: 3px;
+  margin-right: 10px;
+  vertical-align: text-top;
+  cursor: pointer;
+  transition: 500ms;
+}
+
+input[type="checkbox"] + span:hover:before {
+  border-color: #b2bccc;
+}
+
+input[type="checkbox"]:checked + span:before {
+  content: "\2714";
+  color: var(--font-color);
+  text-align: center;
+  line-height: 20px;
+}
+
+input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 30px;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+input[type="checkbox"]:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+input[type="checkbox"]:checked ~ .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }

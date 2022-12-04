@@ -1,27 +1,35 @@
 const boxes = document.querySelectorAll(".box");
 const clearBtn = document.getElementById("clear");
 const computer = document.getElementById("computer");
+const modal = document.getElementById("modal");
+const winLabel = document.getElementById("winner");
+const again = document.getElementById("again");
+const close = document.getElementById("close");
 var map = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-var singlePlayer = false;
+var singlePlayer = !computer.checked;
 var running = true;
 var turn = 0;
 
-computer.addEventListener("change", function () {
+computer.addEventListener("change", () => {
   if (computer.checked) {
-    singlePlayer = true;
-  } else {
     singlePlayer = false;
+  } else {
+    singlePlayer = true;
   }
+  clear();
+});
+
+close.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+again.addEventListener("click", () => {
+  modal.style.display = "none";
+  clear();
 });
 
 clearBtn.addEventListener("click", () => {
-  boxes.forEach((box) => {
-    box.innerHTML = "";
-  });
-  removeWinBox();
-  turn = 0;
-  map = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-  running = true;
+  clear();
 });
 
 boxes.forEach(function (box) {
@@ -115,6 +123,16 @@ function computerTurn() {
   }
 }
 
+function clear() {
+  boxes.forEach((box) => {
+    box.innerHTML = "";
+  });
+  removeWinBox();
+  turn = 0;
+  map = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  running = true;
+}
+
 function removeWinBox() {
   map.forEach(function (box, index) {
     if (box === 1 || box === 2) {
@@ -133,12 +151,32 @@ function checkWin(player) {
   });
 
   if (winConditon(player)) {
-    running = false;
     colorWinBox(player);
+    displayModal(player);
   } else if (tieCondition()) {
-    alert("Tie");
-    running = false;
+    displayModal("Tie");
   }
+}
+
+function displayModal(player) {
+  running = false;
+  if (player === 1) {
+    winner.innerHTML = "Player X wins!";
+  } else if (player === 2) {
+    winner.innerHTML = "Player O wins!";
+  } else {
+    winner.innerHTML = "It's a tie!";
+  }
+  // wait 3 seconds then create the modal
+  setTimeout(function () {
+    modal.style.display = "block";
+    modal.classList.add("fade-in");
+  }, 1000);
+
+  setTimeout(function () {
+    modal.classList.remove("fade-in");
+    modal.style.display = "none";
+  }, 10000);
 }
 
 function tieCondition() {

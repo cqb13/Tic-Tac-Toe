@@ -13,25 +13,26 @@
   justify-content: center;
   align-items: center;
   font-size: 100px;
-  border: 1px solid var(--color-primary);
-  background-color: #fff;
+  background-color: var(--accent-color);
+  color: --font-color;
   transition: 500ms;
   cursor: pointer;
 }
 
 .box:hover {
-  background-color: #eeeeee;
+  background-color: #b2bccc;
 }
 
 .game-btns {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin-top: 20px;
 }
 
 .win {
-  background-color: #0f0;
+  background-color: rgb(44, 126, 44);
 }
 
 .win:hover {
