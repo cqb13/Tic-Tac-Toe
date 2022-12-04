@@ -131,3 +131,35 @@ input[type="checkbox"]:checked ~ .checkmark:after {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+@media screen and (max-width: 765px) {
+  input[type="button"] {
+    width: 50%;
+  }
+  label {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  input[type="button"] {
+    width: 90%;
+  }
+  label {
+    width: 90%;
+  }
+  .game-area {
+    width: 400px !important;
+    height: 400px !important;
+  }
+  .box {
+    font-size: 80px !important;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .game-area {
+    width: 300px !important;
+    height: 300px !important;
+  }
+}

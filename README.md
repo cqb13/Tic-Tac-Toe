@@ -6,8 +6,9 @@
 
 [Look at cool blocks here!](https://cqb13.me/Tic-Tac-Toe)
 
+</div>
+
 <h2>TODO:</h2>
 <pre>
 - Add difficulty levels to computer mode
 </pre>
-</div>
