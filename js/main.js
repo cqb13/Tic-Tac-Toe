@@ -5,18 +5,36 @@ const modal = document.getElementById("modal");
 const winLabel = document.getElementById("winner");
 const again = document.getElementById("again");
 const close = document.getElementById("close");
+const dificultySlider = document.getElementById("dificulty");
+const dificultyLabel = document.getElementById("dificulty-label");
 var map = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-var singlePlayer = !computer.checked;
+var singlePlayer = computer.checked;
+var dificulty = dificultySlider.value;
 var running = true;
 var turn = 0;
 
 computer.addEventListener("change", () => {
   if (computer.checked) {
-    singlePlayer = false;
-  } else {
     singlePlayer = true;
+  } else {
+    singlePlayer = false;
   }
   clear();
+});
+
+dificultySlider.addEventListener("change", () => {
+  if (turn <= 0) {
+    if (dificultySlider.value === "1") {
+      dificultyLabel.innerHTML = "Computer Dificulty: Easy";
+    } else if (dificultySlider.value === "3") {
+      dificultyLabel.innerHTML = "Computer Dificulty: Hard";
+    } else {
+      dificultyLabel.innerHTML = "Computer Dificulty: Normal";
+    }
+    dificulty = dificultySlider.value;
+  } else {
+    dificultySlider.value = dificulty;
+  }
 });
 
 close.addEventListener("click", () => {
@@ -39,7 +57,7 @@ boxes.forEach(function (box) {
         box.innerHTML = "X";
         checkWin(1);
         turn++;
-        if (!singlePlayer && running) {
+        if (singlePlayer && running) {
           computerTurn();
           checkWin(2);
           turn++;
