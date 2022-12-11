@@ -14,6 +14,10 @@ body {
   height: 100%;
 }
 
+.hidden {
+  display: none;
+}
+
 header {
   margin: 0 auto;
   width: 100%;

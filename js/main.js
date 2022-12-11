@@ -5,7 +5,8 @@ const modal = document.getElementById("modal");
 const winLabel = document.getElementById("winner");
 const again = document.getElementById("again");
 const close = document.getElementById("close");
-const dificultySlider = document.getElementById("dificulty");
+const dificultyContainer = document.getElementById("dificulty");
+const dificultySlider = document.getElementById("dificulty-slider");
 const dificultyLabel = document.getElementById("dificulty-label");
 var map = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var singlePlayer = computer.checked;
@@ -16,8 +17,10 @@ var turn = 0;
 computer.addEventListener("change", () => {
   if (computer.checked) {
     singlePlayer = true;
+    dificultyContainer.classList.remove("hidden");
   } else {
     singlePlayer = false;
+    dificultyContainer.classList.add("hidden");
   }
   clear();
 });
@@ -71,40 +74,74 @@ boxes.forEach(function (box) {
   });
 });
 
+//TODO: use way without all the if statements
 function computerTurn() {
-  // if there are 2 X in a row, place O in the third box, use a loop to check for all the possible win conditions
+  if (dificulty === "1") {
+    randomBox();
+  } else if (dificulty === "2") {
+    var random = Math.floor(Math.random() * 10);
+    console.log(random);
+    if (stopX()) {
+      return;
+    }
+    if (random > 5) {
+      if (winO()) {
+        return;
+      }
+    }
+    randomBox();
+  } else {
+    if (stopX()) {
+      return;
+    }
+    if (winO()) {
+      return;
+    }
+    if (placeO()) {
+      return;
+    }
+    randomBox();
+  }
+}
+
+// if there are 2 X in a row, place O in the third box, use a loop to check for all the possible win conditions
+function stopX() {
   for (var i = 0; i < 9; i++) {
     if (map[i] === 0) {
       map[i] = 2;
       if (winConditon(2)) {
         boxes[i].innerHTML = "O";
         map[i] = 2;
-        return;
+        return true;
       } else {
         map[i] = 0;
       }
     }
   }
+}
 
-  // if there are 2 O in a row, place O in the third box, use a loop to check for all the possible win conditions
+// if there are 2 O in a row, place O in the third box, use a loop to check for all the possible win conditions
+function winO() {
   for (var i = 0; i < 9; i++) {
     if (map[i] === 0) {
       map[i] = 1;
       if (winConditon(1)) {
         boxes[i].innerHTML = "O";
         map[i] = 2;
-        return;
+        return true;
       } else {
         map[i] = 0;
       }
     }
   }
+}
 
+function placeO() {
   // if there is no 2 X in a row, place O in the middle box
   if (map[4] === 0) {
     boxes[4].innerHTML = "O";
     map[4] = 2;
-    return;
+    return true;
   }
 
   // if there are no 2 X in a row and the middle box is taken, place O in a random corner
@@ -113,7 +150,7 @@ function computerTurn() {
   if (map[randomCorner] === 0) {
     boxes[randomCorner].innerHTML = "O";
     map[randomCorner] = 2;
-    return;
+    return true;
   }
 
   // if there are no 2 X in a row and the middle box is taken and no corners are available, place O in a random side
@@ -122,10 +159,12 @@ function computerTurn() {
   if (map[randomSide] === 0) {
     boxes[randomSide].innerHTML = "O";
     map[randomSide] = 2;
-    return;
+    return true;
   }
+}
 
-  // if there are no 2 X in a row and the middle box is taken and no corners are available and no sides are available, place O in a random box
+// if there are no 2 X in a row and the middle box is taken and no corners are available and no sides are available, place O in a random box
+function randomBox() {
   var randomBox = Math.floor(Math.random() * 9);
   if (map[randomBox] === 0) {
     boxes[randomBox].innerHTML = "O";
