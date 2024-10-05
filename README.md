@@ -8,7 +8,3 @@
 
 </div>
 
-<h2>TODO:</h2>
-<pre>
-- Add difficulty levels to computer mode
-</pre>
